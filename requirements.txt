@@ -1,0 +1,10 @@
+flask==3.0.0
+streamlit
+pandas
+numpy
+sqlalchemy>=2.0.35
+python-dotenv==1.0.0
+plotly==5.18.0
+scikit-learn
+flask-sqlalchemy>=3.1.1
+requests==2.31.0
