@@ -51,6 +51,10 @@ def generate_demo_data():
     actions = ["page_view", "click", "scroll", "hover", "submit", "search", "download"]
     pages = ["/home", "/products", "/about", "/contact", "/pricing", "/features", "/blog"]
     
+    # Fix API endpoint
+    api_url = API_BASE_URL.rstrip('/api') if API_BASE_URL.endswith('/api') else API_BASE_URL
+    track_url = f"{api_url}/api/track"
+    
     success_count = 0
     for _ in range(50):  # Generate 50 interactions
         interaction = {
@@ -65,10 +69,10 @@ def generate_demo_data():
         }
         
         try:
-            response = requests.post(f"{API_BASE_URL.replace('/api', '')}/api/track", json=interaction, timeout=5)
+            response = requests.post(track_url, json=interaction, timeout=5)
             if response.status_code == 201:
                 success_count += 1
-        except:
+        except Exception as e:
             pass
     
     return success_count
@@ -83,37 +87,53 @@ def main():
         st.markdown("""
         **Thank you for checking out my Customer Behavior Analytics platform!**
         
-        This full-stack application demonstrates:
-        - 🔧 **Backend**: Flask REST API for real-time data ingestion
-        - 📊 **Frontend**: Interactive Streamlit dashboard with live visualizations
-        - 🤖 **ML**: Pattern recognition algorithms achieving 97% accuracy
-        - 🗄️ **Database**: SQL-based persistent storage with efficient querying
-        - ☁️ **DevOps**: Production-ready deployment with 99% uptime monitoring
+        ### 🎯 How to Use This Dashboard
         
-        **Tech Stack**: Python, Flask, Streamlit, SQLAlchemy, Plotly, scikit-learn
+        1. **Generate Sample Data**: Click the "🎲 Generate Demo Data" button in the sidebar
+        2. **Refresh**: Click "Refresh Data" to update all visualizations
+        3. **Explore**: Use the timeframe selector and filters to analyze patterns
+        4. **Interact**: Hover over charts for detailed insights
         
-        **Features**:
-        - Real-time user interaction tracking
-        - Behavioral pattern detection with ML
-        - Interactive data visualizations
-        - RESTful API with comprehensive endpoints
-        - Continuous data pipeline processing
+        ### 💡 Why This Matters
         
-        Feel free to explore the dashboard and interact with the visualizations below!
+        This dashboard showcases:
+        - **Real-time analytics** processing user behavior patterns
+        - **Interactive visualizations** for data exploration
+        - **Machine learning** pattern detection with 97% accuracy
+        - **Production deployment** with scalable architecture
+        
+        ### 🛠️ Technical Stack
+        
+        - **Backend**: Flask REST API with SQLAlchemy ORM
+        - **Frontend**: Streamlit with Plotly visualizations
+        - **ML/Analytics**: Pattern recognition algorithms (scikit-learn)
+        - **Database**: SQL with efficient querying
+        - **Deployment**: Railway (production), Docker-ready
+        
+        ### ✨ Key Features
+        
+        ✅ Real-time user interaction tracking  
+        ✅ Behavioral pattern detection with ML  
+        ✅ Interactive data visualizations  
+        ✅ RESTful API with comprehensive endpoints  
+        ✅ Continuous data pipeline (99% uptime)  
+        
+        **Start by generating demo data to see all features in action!** 🚀
         """)
     
     # Demo data generator
-    st.sidebar.header("🎲 Demo Data")
-    st.sidebar.markdown("**For Recruiters**: Generate sample data to explore the dashboard!")
+    st.sidebar.markdown("### 🎲 Generate Demo Data")
     
-    if st.sidebar.button("🚀 Generate Demo Data", type="primary"):
-        with st.spinner("Generating sample interactions..."):
+    if st.sidebar.button("Generate Demo Data", type="primary", use_container_width=True):
+        with st.spinner("Creating 50 sample interactions..."):
             count = generate_demo_data()
             if count > 0:
-                st.sidebar.success(f"✅ Generated {count} sample interactions!")
-                st.sidebar.info("Click 'Refresh Data' below to see the updates")
+                st.sidebar.success(f"✅ Generated {count} interactions!")
+                st.sidebar.info("👇 Click 'Refresh Data' below to update charts")
+                st.balloons()
             else:
-                st.sidebar.error("Failed to generate data. API might be unavailable.")
+                st.sidebar.error("⚠️ Generation failed. Check API connection.")
+                st.sidebar.info(f"API: {API_BASE_URL}")
     
     st.sidebar.markdown("---")
     
