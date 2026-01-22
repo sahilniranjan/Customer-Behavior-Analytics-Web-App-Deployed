@@ -17,6 +17,13 @@ db.init_app(app)
 # Initialize database tables
 with app.app_context():
     db.create_all()
+    
+    # Auto-seed demo data on first run
+    try:
+        from seed_data import seed_demo_data
+        seed_demo_data()
+    except Exception as e:
+        print(f"Note: Could not seed demo data: {e}")
 
 pattern_recognizer = PatternRecognizer()
 
