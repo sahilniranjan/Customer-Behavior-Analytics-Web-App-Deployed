@@ -43,6 +43,37 @@ def fetch_patterns(user_id=None):
         return []
 
 
+def generate_demo_data():
+    """Generate demo data by sending sample interactions to the API."""
+    import random
+    
+    user_ids = [f"demo_user_{i:03d}" for i in range(1, 26)]
+    actions = ["page_view", "click", "scroll", "hover", "submit", "search", "download"]
+    pages = ["/home", "/products", "/about", "/contact", "/pricing", "/features", "/blog"]
+    
+    success_count = 0
+    for _ in range(50):  # Generate 50 interactions
+        interaction = {
+            "user_id": random.choice(user_ids),
+            "action": random.choice(actions),
+            "page": random.choice(pages),
+            "metadata": {
+                "session_duration": random.randint(10, 300),
+                "device": random.choice(["desktop", "mobile", "tablet"]),
+                "referrer": random.choice(["google", "facebook", "direct", "twitter"])
+            }
+        }
+        
+        try:
+            response = requests.post(f"{API_BASE_URL.replace('/api', '')}/api/track", json=interaction, timeout=5)
+            if response.status_code == 201:
+                success_count += 1
+        except:
+            pass
+    
+    return success_count
+
+
 def main():
     st.title("📊 Customer Behavior Analytics Dashboard")
     st.markdown("### Real-time insights with 97% pattern recognition accuracy")
@@ -70,6 +101,21 @@ def main():
         
         Feel free to explore the dashboard and interact with the visualizations below!
         """)
+    
+    # Demo data generator
+    st.sidebar.header("🎲 Demo Data")
+    st.sidebar.markdown("**For Recruiters**: Generate sample data to explore the dashboard!")
+    
+    if st.sidebar.button("🚀 Generate Demo Data", type="primary"):
+        with st.spinner("Generating sample interactions..."):
+            count = generate_demo_data()
+            if count > 0:
+                st.sidebar.success(f"✅ Generated {count} sample interactions!")
+                st.sidebar.info("Click 'Refresh Data' below to see the updates")
+            else:
+                st.sidebar.error("Failed to generate data. API might be unavailable.")
+    
+    st.sidebar.markdown("---")
     
     # Sidebar controls
     st.sidebar.header("Dashboard Controls")
