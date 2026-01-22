@@ -5,10 +5,10 @@ A comprehensive Python-based web application for analyzing customer behavior pat
 ## 🌐 Live Demo
 
 **Want to see it in action?** Check out the live deployment:
-- 📊 **Dashboard**: [View Live Analytics Dashboard](#) *(Add your URL after deployment)*
-- 🔌 **API**: [API Health Check](#) *(Add your URL after deployment)*
+- 📊 **Dashboard**: [View Live Analytics Dashboard](https://customer-behavior-analytics-web-app-deployed-production.up.railway.app)
+- 🔌 **API**: [API Health Check](https://web-production-34d9c.up.railway.app/health)
 
-> **Note**: Deployed on free tier - may take 30 seconds to wake up on first visit.
+> **Note**: Deployed on Railway free tier - may take 30 seconds to wake up on first visit. Dashboard comes pre-populated with 30 days of demo data!
 
 ## 🚀 Features
 
