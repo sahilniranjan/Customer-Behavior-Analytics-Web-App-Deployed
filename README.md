@@ -2,6 +2,14 @@
 
 A comprehensive Python-based web application for analyzing customer behavior patterns in real-time with 97% accuracy. Built with Flask, Streamlit, and SQL for interactive dashboards and continuous data processing.
 
+## 🌐 Live Demo
+
+**Want to see it in action?** Check out the live deployment:
+- 📊 **Dashboard**: [View Live Analytics Dashboard](#) *(Add your URL after deployment)*
+- 🔌 **API**: [API Health Check](#) *(Add your URL after deployment)*
+
+> **Note**: Deployed on free tier - may take 30 seconds to wake up on first visit.
+
 ## 🚀 Features
 
 - **Real-time Analytics**: Achieve 97% accuracy in pattern recognition across users
@@ -174,3 +182,51 @@ This project is for demonstration purposes.
 ## 🤝 Support
 
 For issues or questions, please check the code documentation or create an issue in the project repository.
+---
+
+## 🚀 Deployment
+
+Ready to deploy this project for recruiters to see?
+
+### Quick Deploy to Render (Free)
+
+1. **Push to GitHub**:
+   ```bash
+   ./deploy.sh
+   ```
+   Or manually:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin https://github.com/YOUR_USERNAME/customer-behavior-analytics.git
+   git push -u origin main
+   ```
+
+2. **Deploy on Render**:
+   - Go to [render.com](https://render.com)
+   - Connect your GitHub repository
+   - Deploy both services (API and Dashboard)
+   - See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions
+
+### Alternative Platforms
+- **Streamlit Cloud**: For dashboard only (easiest)
+- **Railway**: Alternative to Render
+- **Heroku**: Classic option (requires credit card for free tier)
+
+📖 **Full deployment guide**: See [DEPLOYMENT.md](DEPLOYMENT.md) for step-by-step instructions.
+
+---
+
+## 🎯 For Recruiters
+
+This project demonstrates:
+- ✅ **Full-stack development**: Flask backend + Streamlit frontend
+- ✅ **Database design**: SQLAlchemy ORM with efficient queries
+- ✅ **API development**: RESTful endpoints with proper error handling
+- ✅ **Data visualization**: Interactive charts with Plotly
+- ✅ **Machine learning**: Pattern recognition algorithms (97% accuracy)
+- ✅ **DevOps**: Production-ready deployment configuration
+- ✅ **Code quality**: PEP 8 compliance, type hints, documentation
+
+**Tech Stack**: Python, Flask, Streamlit, SQLAlchemy, Plotly, scikit-learn, Pandas, NumPy

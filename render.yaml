@@ -1,0 +1,30 @@
+services:
+  # Flask API Backend
+  - type: web
+    name: customer-analytics-api
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.7
+      - key: DATABASE_URL
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FLASK_ENV
+        value: production
+
+  # Streamlit Dashboard
+  - type: web
+    name: customer-analytics-dashboard
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "streamlit run dashboard.py --server.port $PORT --server.address 0.0.0.0"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.7
+      - key: API_BASE_URL
+        value: https://customer-analytics-api.onrender.com/api
