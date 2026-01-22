@@ -14,6 +14,10 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-secret-key')
 
 db.init_app(app)
 
+# Initialize database tables
+with app.app_context():
+    db.create_all()
+
 pattern_recognizer = PatternRecognizer()
 
 
