@@ -5,10 +5,9 @@ A comprehensive Python-based web application for analyzing customer behavior pat
 ## 🌐 Live Demo
 
 **Want to see it in action?** Check out the live deployment:
-- 📊 **Dashboard**: [View Live Analytics Dashboard](https://customer-behavior-analytics-web-app-deployed-production.up.railway.app)
-- 🔌 **API**: [API Health Check](https://web-production-34d9c.up.railway.app/health)
+- 📊 **Dashboard**: [View Live Analytics Dashboard](https://customer-behavior-analytics-web-app-deployed.streamlit.app)
 
-> **Note**: Deployed on Railway free tier - may take 30 seconds to wake up on first visit. Dashboard comes pre-populated with 30 days of demo data!
+> **Note**: Dashboard comes pre-populated with 30 days of demo data!
 
 ## 🚀 Features
 
@@ -50,25 +49,25 @@ A comprehensive Python-based web application for analyzing customer behavior pat
 
 ## 🚀 Usage
 
-### 1. Start the Flask API Server
+### 1. Start the Streamlit Dashboard
 
-The Flask API handles data ingestion and pattern analysis:
-
-```bash
-python app.py
-```
-
-The API will be available at `http://localhost:5000`
-
-### 2. Start the Streamlit Dashboard
-
-In a new terminal, start the interactive dashboard:
+The main app runs the interactive analytics dashboard:
 
 ```bash
-streamlit run dashboard.py
+streamlit run app.py
 ```
 
 The dashboard will open automatically at `http://localhost:8501`
+
+### 2. Start the Flask API Server (Optional)
+
+For a standalone REST API:
+
+```bash
+python flask_app.py
+```
+
+The API will be available at `http://localhost:5001`
 
 ### 3. Start the Data Pipeline (Optional)
 
@@ -120,11 +119,13 @@ GET /health
 
 ```
 Customer Behavior Analytics Web App/
-├── app.py                    # Flask API server
-├── dashboard.py              # Streamlit dashboard
+├── app.py                    # Streamlit dashboard (main entry point)
+├── flask_app.py              # Flask REST API server
+├── dashboard.py              # Alternate dashboard module
 ├── database.py               # SQLAlchemy models
 ├── analytics.py              # Pattern recognition engine
 ├── pipeline.py               # Real-time data pipeline
+├── seed_data.py              # Demo data seeder
 ├── requirements.txt          # Python dependencies
 ├── .env.example             # Environment variables template
 └── README.md                # This file
