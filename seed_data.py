@@ -6,7 +6,7 @@ This ensures the dashboard always has data to display.
 from datetime import datetime, timedelta
 import random
 from database import db, UserInteraction
-from app import app
+from flask_app import app
 
 
 def seed_demo_data():

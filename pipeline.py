@@ -4,7 +4,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 from database import db, UserInteraction, BehaviorPattern
 from analytics import PatternRecognizer
-from app import app
+from flask_app import app
 
 load_dotenv()
 
